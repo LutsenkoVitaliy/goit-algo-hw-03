@@ -30,7 +30,20 @@ import re
 def normalize_phone(phone_number: str) -> str:
   phone_number = phone_number.strip().replace(" ", "") # видаляэмо всі пробіли
   if phone_number.isdigit() == False:
-    phone_number = re.sub(r'[^\d+]', '', phone_number) # видаляэмо все крім чисел та +
+    pattern = r'[^\d+]'
+    phone_number = re.sub(pattern, '', phone_number) # видаляэмо все крім чисел та +
+  
+  if phone_number.startswith('0') and len(phone_number) == 10:
+    phone_number = '38' + phone_number
+  
+  if phone_number.startswith('38'):
+    phone_number = '+' + phone_number
+
+  # if not phone_number.startswith('+'):
+  #   if phone_number.startswith('380'):
+  #     phone_number = '+' + phone_number
+  #   else:
+  #     phone_number = '+38' + phone_number
 
   print(phone_number)
 
