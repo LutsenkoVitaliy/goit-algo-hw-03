@@ -29,7 +29,10 @@ import re
 
 def normalize_phone(phone_number: str) -> str:
   phone_number = phone_number.strip().replace(" ", "") # видаляэмо всі пробіли
+  if phone_number.isdigit() == False:
+    phone_number = re.sub(r'[^\d+]', '', phone_number) # видаляэмо все крім чисел та +
 
+  print(phone_number)
 
 
 
