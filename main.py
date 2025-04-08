@@ -1,19 +1,23 @@
 # Перше завдання ----------------------------------------
-import datetime
+from datetime import datetime
 
-now = datetime.datetime.now()
+def get_days_from_today(date: str):
+  try:
+    now = datetime.today().date()
+    datetime_object = datetime.strptime(date, "%Y-%m-%d").date()
+    difference = now - datetime_object
+    return difference.days
+   
+  except ValueError:
+    print(f"Отримано невірний формат дати {date}, правильний: 'РРРР-ММ-ДД'.")
 
-def get_days_from_today(date):
-  diference = now.date().toordinal() - date.toordinal()
-  return diference
-  
-print(get_days_from_today(datetime.date(2028, 9, 24)))
-print(get_days_from_today(datetime.date(1996, 9, 24)))
+print(get_days_from_today("2020-10-09"))
+print(get_days_from_today("09.10.2020"))
 
 # Друге завдання ------------------------------------------
 import random
 
-def get_numbers_ticket(min, max, quantity):
+def get_numbers_ticket(min: int, max: int, quantity: int):
   lottery_numbers = []
 
   for _ in range(quantity):
@@ -21,7 +25,8 @@ def get_numbers_ticket(min, max, quantity):
 
   return lottery_numbers
 
-print(f"Ваші лотерейні числа: {get_numbers_ticket(1, 49, 6)}")
+lottery_numbers = get_numbers_ticket(1, 49, 6)
+print(f"Ваші лотерейні числа: {lottery_numbers}")
 
 
 # Третє завдання ------------------------------------------
