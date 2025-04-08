@@ -18,14 +18,15 @@ print(get_days_from_today("09.10.2020"))
 import random
 
 def get_numbers_ticket(min: int, max: int, quantity: int):
-  lottery_numbers = []
+  if min < 1 or max > 1000 or quantity <= 0:
+    return []
+  
+  if (max - min + 1) < quantity:
+    return []
+ 
+  return sorted(random.sample(range(min,max + 1), quantity))
 
-  for _ in range(quantity):
-    lottery_numbers.append(random.randint(min, max))
-
-  return lottery_numbers
-
-lottery_numbers = get_numbers_ticket(1, 49, 6)
+lottery_numbers = get_numbers_ticket(10, 15, 5)
 print(f"Ваші лотерейні числа: {lottery_numbers}")
 
 
